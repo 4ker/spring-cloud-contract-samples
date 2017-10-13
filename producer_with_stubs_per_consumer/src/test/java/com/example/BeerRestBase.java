@@ -14,27 +14,4 @@ import static org.mockito.Matchers.argThat;
 
 @RunWith(MockitoJUnitRunner.class)
 public abstract class BeerRestBase {
-	//remove::start[]
-
-	@Mock PersonCheckingService personCheckingService;
-	@InjectMocks ProducerController producerController;
-
-	@Before
-	public void setup() {
-		given(personCheckingService.shouldGetBeer(argThat(oldEnough()))).willReturn(true);
-		RestAssuredMockMvc.standaloneSetup(producerController);
-	}
-
-	private TypeSafeMatcher<PersonToCheck> oldEnough() {
-		return new TypeSafeMatcher<PersonToCheck>() {
-			@Override protected boolean matchesSafely(PersonToCheck personToCheck) {
-				return personToCheck.age >= 20;
-			}
-
-			@Override public void describeTo(Description description) {
-
-			}
-		};
-	}
-	//remove::end[]
 }
