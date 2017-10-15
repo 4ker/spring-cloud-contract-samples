@@ -1,3 +1,5 @@
+package contracts.beer.rest
+
 org.springframework.cloud.contract.spec.Contract.make {
     description("""
 Represents a successful scenario of getting a beer
@@ -10,12 +12,13 @@ when:
 then:
 \twe'll grant him the beer
 ```
-""")
+
+    """)
     request {
         method POST()
         url "/check"
-        body (
-                age: 22, name: "marcin"
+        body(
+                age: 15, name: "dolly"
         )
         headers {
             contentType(applicationJsonUtf8())
@@ -24,9 +27,7 @@ then:
     response {
         status(200)
         body("""
-            { 
-                "status" : "OK" 
-            }
+            { "status" : "NOT_OK" }
         """)
         headers {
             contentType(applicationJsonUtf8())

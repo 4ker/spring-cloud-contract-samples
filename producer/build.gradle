@@ -9,7 +9,8 @@ buildscript {
 
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.4.RELEASE"
-	}
+        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${verifierVersion}"
+    }
 }
 
 group = 'com.example'
@@ -52,3 +53,4 @@ test {
 task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
 }
+
