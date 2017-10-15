@@ -35,9 +35,21 @@ public class BeerControllerTest extends AbstractTest {
 	@Autowired BeerController beerController;
 
 	@Test public void should_give_me_a_beer_when_im_old_enough() throws Exception {
+		mockMvc.perform(
+                        MockMvcRequestBuilders.post("/bear")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(json.write(new Person("tangzhixiong", 25)).getJson()))
+                .andExpect(status().isOk())
+                .andExpect(content().string("THERE YOU GO"));
 	}
 
 	@Test public void should_reject_a_beer_when_im_too_young() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/bear")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json.write(new Person("baby", 5)).getJson()))
+                .andExpect(status().isOk())
+                .andExpect(content().string("GET LOST"));
 	}
 }
 
